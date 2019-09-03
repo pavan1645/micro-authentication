@@ -3,14 +3,16 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+const authMiddleware = require("./middlewares/authMiddleware");
 const routes = require("./routes/routes");
 
-const AUTH_SECRET = process.env.AUTH_SECRET;
 const PORT = 8000;
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.get("/", authMiddleware.validate, (req, res) => res.send("Hello world"));
 
 app.use("/user", routes);
 
