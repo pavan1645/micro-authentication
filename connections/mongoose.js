@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/auth", {useNewUrlParser: true});
+mongoose.connect(process.env.DB_STR, {useNewUrlParser: true});
 
 const db = mongoose.connection;
 
